@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.1.3" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <!-- add a reference to this assembly: C:\Users\rudi\source\repos\doc-capt\src\DocCapServer\bin\Debug\net8.0\DocCapServer.dll -->
+  <ItemGroup>
+    <Reference Include="DocCap.Contracts.dll">
+      <HintPath>..\..\DocCap.Contracts\bin\Debug\net8.0\DocCap.Contracts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

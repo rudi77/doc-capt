@@ -1,0 +1,15 @@
+apiVersion: openfunction.io/v1
+kind: Function
+metadata:
+  name: ocr-function
+spec:
+  image: <your-docker-registry>/ocr-function:v1
+  serving:
+    runtime: Knative
+    scaleOptions:
+      keda:
+        triggers:
+        - type: rabbitmq
+          metadata:
+            queueName: ocr-requests
+            host: <rabbitmq-host>
