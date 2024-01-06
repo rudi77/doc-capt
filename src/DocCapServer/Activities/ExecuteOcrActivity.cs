@@ -1,13 +1,16 @@
 using Elsa.Extensions;
 using Elsa.Workflows;
 using Elsa.Workflows.Models;
-using Elsa.Workflows.Runtime.Bookmarks;
 using MassTransit;
 using DocCap.Contracts;
 
 namespace DocCapServer.Activities;
-[Elsa.Workflows.Attributes.Activity("Bludelta", 
-    "Ocr", "Sends a document to the ocr service.", DisplayName = "Ocr Document")]
+
+[Elsa.Workflows.Attributes.Activity(
+    "DocumentCapture", 
+    "Ocr", 
+    "Sends a document to the ocr service.", 
+    DisplayName = "Send to Ocr")]
 public class ExecuteOcrActivity : CodeActivity
 {
     /// <summary>
@@ -28,7 +31,7 @@ public class ExecuteOcrActivity : CodeActivity
         // create OcrCommand 
         var correlationId = Guid.NewGuid();
         var content = DocumentContent.Get<byte[]>(context);
-        var command = new ExecuteOcrCommand(correlationId, content);
+        var command = new ExecuteOcrCommand(context.WorkflowExecutionContext.Id, correlationId, content);
         var sendEndpoint = await sendEndpointProvider.GetSendEndpoint(new Uri("queue:ocr-queue"));
 
         await sendEndpoint.Send(command);      
