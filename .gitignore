@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Ignore all sqlite files
+
+src/DocCapServer/elsa.sqlite.db
