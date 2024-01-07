@@ -35,3 +35,13 @@ public class OcrCompletedConsumer : IConsumer<OcrCompleted>
         return;
     }
 }
+
+public class OcrCompletedConsumerDefinition : ConsumerDefinition<OcrCompletedConsumer>
+{
+    protected override void ConfigureConsumer(IReceiveEndpointConfigurator endpointConfigurator, IConsumerConfigurator<OcrCompletedConsumer> consumerConfigurator)
+    {
+        endpointConfigurator.ConfigureConsumeTopology = false;
+        endpointConfigurator.ClearMessageDeserializers();
+        endpointConfigurator.UseRawJsonSerializer();
+    }
+}

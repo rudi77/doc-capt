@@ -398,5 +398,10 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Ignore all sqlite files
+*.db
+*.db-shm
+*.db-wal
 
-src/DocCapServer/elsa.sqlite.db
+
+venv/
+

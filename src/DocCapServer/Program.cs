@@ -38,9 +38,11 @@ services.AddElsa(elsa =>
 
         
         elsa.UseMassTransit(massTransit => 
-        {            
-            massTransit.AddConsumer<OcrCompletedConsumer>();
-            massTransit.UseRabbitMq("amqp://guest:guest@localhost:5672");
+        {   
+            massTransit.AddConsumer(typeof(OcrCompletedConsumer), typeof(OcrCompletedConsumerDefinition));
+            massTransit.UseRabbitMq(
+                "amqp://guest:guest@localhost:5672"
+               );
         });
     }
 );
